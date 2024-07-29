@@ -6,23 +6,31 @@ function init(){
     document.getElementById('curso').innerText = curso;
 
     chrome.storage.session.get(['notas']).then(function (result) {
-        //let listaCursos = document.querySelector("#lista-cursos");
         let notas = result.notas.filter(nota => nota.curso === curso);
-        console.log(notas);
-        return
         if (notas) {
-            let setCursos = new Set();
-            notas.forEach(nota => {
-                setCursos.add(nota.curso);
-            });
-            let cursos = Array.from(setCursos);
+            let parcial;
+            let titulo;
+            let identidicador;
             let content = "";
-            cursos.forEach(curso => {
-                content += `<button class="list-item" id="curso">${curso}</button>`;
-            });
-            listaCursos.innerHTML = content;
-        }
+            notas.forEach(curso => {
+                parcial = getTipoParcial(curso);
+                titulo = parcial.tipo + " " + parcial.numero;
+                identidicador = parcial.tipo.toLowerCase() + parcial.numero;
 
+                content += `
+                    <div class="nota-row">
+                        <label for="${identidicador}">${titulo}</label>
+                        <div class="input-group">
+                            <input type="number" id="${identidicador}" name="${identidicador}" min="0" max="20" placeholder="nota">
+                            <input type="number" id="peso-${identidicador}" name="peso-${identidicador}" min="0" max="100" placeholder="peso">
+                        </div>
+                    </div>
+                `;
+            });
+            document.querySelector("#nota-container").innerHTML = content;
+
+        }
+        return;
         const btnCursos = document.querySelectorAll("#curso");
         btnCursos.forEach(btnCurso => {
             btnCurso.addEventListener('click', function (e) {
@@ -34,5 +42,19 @@ function init(){
         }
         );
     });
+
+
+    function getTipoParcial(nota) {
+        let parcial = nota.parcial;
+        let continuaMatch = parcial.match(/EVAL\. CONTINUA (\d)/);
+        let examenMatch = parcial.match(/EXAMEN (\d)/);
+    
+        if (continuaMatch) {
+            return { tipo: "Continua", numero: continuaMatch[1] };
+        } else if (examenMatch) {
+            return { tipo: "Examen", numero: examenMatch[1] };
+        }
+        return null; // Retornar null si no coincide con ninguno
+    }
 
 }
