@@ -1,5 +1,31 @@
 document.addEventListener('DOMContentLoaded', init);
 function init() {
+    chrome.storage.session.get(['notas']).then(function (result) {
+        let texto = document.querySelector("#texto");
+        let notas = result.notas;
+        if (notas) {
+            notas.forEach(nota => {
+                let tr = document.createElement("tr");
+                let td1 = document.createElement("td");
+                td1.textContent = nota.curso;
+                let td2 = document.createElement("td");
+                td2.textContent = nota.parcial;
+                let td3 = document.createElement("td");
+                td3.textContent = nota.nota;
+                let td4 = document.createElement("td");
+                td4.textContent = nota.peso;
+                let td5 = document.createElement("td");
+                td5.textContent = nota.ausente;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                texto.appendChild(tr);
+            });
+        }
+    });
+    return
     const btn = document.querySelector("#boton");
     btn.addEventListener('click', function (e) {
         e.preventDefault();

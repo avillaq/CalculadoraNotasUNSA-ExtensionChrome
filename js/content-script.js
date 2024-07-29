@@ -12,5 +12,4 @@ document.querySelectorAll('tr').forEach(fila => {
         });
     }
 });
-
-chrome.storage.local.set({ notas: notas });
+chrome.storage.session.set({ notas: notas });
