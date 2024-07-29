@@ -1,0 +1,64 @@
+body {
+    font-family: Verdana, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    width: 230px;
+}
+
+/* Header side */
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    background-color: #64001d;
+}
+.header p {
+    font-family: inherit;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    transition: all .2s ease-in-out;
+    margin: 7px 0;
+}
+
+
+/*Botones -> Calificar - Limpiar*/
+.container-btn {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0 5px 0;
+}
+
+.btn {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    padding: 7px;
+    background-color: #272727;
+    border-radius: 5px;
+}
+
+/*Efecto al ser precionado los botones*/
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Footer*/
+footer p {
+    text-align: center;
+    margin: 10px 0 0 0;
+    padding: 7px 0;
+    color: #fff;
+    background-color: #64001d;
+}
