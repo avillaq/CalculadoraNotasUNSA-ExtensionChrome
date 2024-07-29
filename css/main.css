@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
-    width: 230px;
+    width: 400px;
 }
 
 /* Header side */
@@ -21,25 +21,32 @@ body {
     font-size: 16px;
     margin: 0;
 }
+main p {
+    text-align: center;
+}
 
-.container {
-    background-color: #ffffff;
+.list-cursos {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 0;
-    transition: all .2s ease-in-out;
-    margin: 7px 0;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 10px;
+}
+.list-cursos .list-item {
+    width: 100%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-color: #cbd5e0;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+.list-item:hover {
+    transform: translateY(-0.05rem); 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
 }
 
 
-/*Botones -> Calificar - Limpiar*/
-.container-btn {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 10px 0 5px 0;
-}
-
+/**************************************************************************************************************************/
 .btn {
     text-decoration: none;
     color: #fff;
