@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
-    width: 400px;
+    width: 350px;
 }
 
 /* Header side */
@@ -44,6 +44,40 @@ main p {
     transform: translateY(-0.05rem); 
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
 }
+
+
+.nota-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.nota-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.nota-row label {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.input-group input[type="number"] {
+    border: 1px solid #e2e8f0;
+    padding:5px;
+    border-radius: 5px; 
+    width: 48px;
+    text-align: center;
+    outline: none;
+}
+
 
 
 /**************************************************************************************************************************/
