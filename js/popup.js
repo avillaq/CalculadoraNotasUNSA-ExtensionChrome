@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', init);
 function init() {
     chrome.storage.session.get(['notas']).then(function (result) {
-        let texto = document.querySelector("#texto");
+        let listaCursos = document.querySelector("#lista-cursos");
         let notas = result.notas;
         if (notas) {
             let setCursos = new Set();
@@ -9,26 +9,23 @@ function init() {
                 setCursos.add(nota.curso);
             });
             let cursos = Array.from(setCursos);
+            let content = "";
             cursos.forEach(curso => {
-                let tr = document.createElement("tr");
-                let td1 = document.createElement("td");
-                td1.textContent = curso;
-                tr.appendChild(td1);
-                texto.appendChild(tr);
+                content += `<button class="list-item" id="curso">${curso}</button>`;
             });
+            listaCursos.innerHTML = content;
         }
-    });
 
-
-
-
-
-
-    return
-    const btn = document.querySelector("#boton");
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        chrome.action.setPopup({popup: "popup2.html"});
+        const btnCursos = document.querySelectorAll("#curso");
+        btnCursos.forEach(btnCurso => {
+            btnCurso.addEventListener('click', function (e) {
+                e.preventDefault();
+                let curso = btnCurso.textContent;
+                window.location.href = 'popup2.html?curso=' + encodeURIComponent(curso);
+            }
+            );
+        }
+        );
     });
 
     /*
