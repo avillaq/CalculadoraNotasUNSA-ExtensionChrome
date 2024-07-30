@@ -1,6 +1,5 @@
 // content-script.js
 const notas = [];
-chrome.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
 document.querySelectorAll('tr').forEach(fila => {
     let datos = fila.querySelectorAll('td');
     if (datos.length === 7) {
