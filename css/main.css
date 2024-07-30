@@ -78,23 +78,23 @@ main p {
     border: 1px solid #e2e8f0;
     padding:5px;
     border-radius: 5px; 
-    width: 48px;
+    width: 52px;
     text-align: center;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 .input-group select {
     border: 1px solid #e2e8f0;
     padding:5px;
     border-radius: 5px; 
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* Separador */
 hr {
     border: none;
-    border-top: 1px solid #c9ced5;
+    border-top: 1px solid #a5a8ac;
     margin: 0;
 }
 
@@ -109,7 +109,7 @@ hr {
     cursor: pointer;
     margin-top: 10px;
     border: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /*Efecto al ser precionado los botones*/
