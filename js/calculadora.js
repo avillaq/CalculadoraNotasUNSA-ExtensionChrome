@@ -8,27 +8,13 @@ function init(){
     chrome.storage.session.get(['notas']).then(function (result) {
         let notas = result.notas.filter(nota => nota.curso === curso);
         if (notas) {
-            let parcial;
-            let titulo;
             let identidicador;
-            let content = "";
             notas.forEach(curso => {
-                parcial = getTipoParcial(curso);
-                titulo = parcial.tipo + " " + parcial.numero;
-                identidicador = parcial.tipo.toLowerCase() + parcial.numero;
-
-                content += `
-                    <div class="nota-row">
-                        <label for="${identidicador}">${titulo}</label>
-                        <div class="input-group">
-                            <input type="number" id="${identidicador}" name="${identidicador}" min="0" max="20" placeholder="nota">
-                            <input type="number" id="peso-${identidicador}" name="peso-${identidicador}" min="0" max="100" placeholder="peso">
-                        </div>
-                    </div>
-                `;
+                identidicador = getTipoIndentificador(curso);
+                
+                document.querySelector(`#${identidicador}`).value = curso.nota;
+                document.querySelector(`#peso-${identidicador}`).value = curso.peso.replace('%','');
             });
-            document.querySelector("#nota-container").innerHTML = content;
-
         }
         return;
         const btnCursos = document.querySelectorAll("#curso");
@@ -44,15 +30,15 @@ function init(){
     });
 
 
-    function getTipoParcial(nota) {
+    function getTipoIndentificador(nota) {
         let parcial = nota.parcial;
         let continuaMatch = parcial.match(/EVAL\. CONTINUA (\d)/);
         let examenMatch = parcial.match(/EXAMEN (\d)/);
     
         if (continuaMatch) {
-            return { tipo: "Continua", numero: continuaMatch[1] };
+            return "continua"+continuaMatch[1];
         } else if (examenMatch) {
-            return { tipo: "Examen", numero: examenMatch[1] };
+            return "examen"+examenMatch[1];
         }
         return null; // Retornar null si no coincide con ninguno
     }
