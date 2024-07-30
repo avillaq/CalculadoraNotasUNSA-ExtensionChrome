@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', init);
 function init() {
     chrome.storage.session.get(['notas']).then(function (result) {
+        console.log(result);
         let listaCursos = document.querySelector("#lista-cursos");
         let notas = result.notas;
         if (notas) {
@@ -14,6 +15,8 @@ function init() {
                 content += `<button class="list-item" id="curso">${curso}</button>`;
             });
             listaCursos.innerHTML = content;
+        } else {
+            listaCursos.innerHTML = "<p>No hay cursos disponibles</p>";
         }
 
         const btnCursos = document.querySelectorAll("#curso");
