@@ -4,7 +4,7 @@ function init() {
         let listaCursos = document.querySelector("#lista-cursos");
         let notas = result.notas;
         console.log(notas);
-        if (notas) {
+        if (notas && notas.length > 0) {
             let setCursos = new Set();
             notas.forEach(nota => {
                 setCursos.add(nota.curso);
