@@ -16,17 +16,6 @@ function init(){
                 document.querySelector(`#peso-${identidicador}`).value = curso.peso.replace('%','');
             });
         }
-        return;
-        const btnCursos = document.querySelectorAll("#curso");
-        btnCursos.forEach(btnCurso => {
-            btnCurso.addEventListener('click', function (e) {
-                e.preventDefault();
-                let curso = btnCurso.textContent;
-                window.location.href = 'popup2.html?curso=' + encodeURIComponent(curso);
-            }
-            );
-        }
-        );
     });
 
     document.querySelector("#calcular").addEventListener('click', function (e) {
@@ -51,6 +40,11 @@ function init(){
         document.querySelector("#nota-final").innerHTML = `NOTA FINAL: ${notaFinal}`;
 
         getNotaFaltante(notaFinal);
+    });
+
+    document.querySelector("#btn-volver").addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = 'popup.html';
     });
 
     function getTipoIndentificador(nota) {
