@@ -23,8 +23,10 @@ body {
 }
 main p {
     text-align: center;
+    font-weight: bold;
 }
 
+/* Listado de cursos */
 .list-cursos {
     display: flex;
     flex-direction: column;
@@ -45,7 +47,7 @@ main p {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
 }
 
-
+/* Nota */
 .nota-container {
     display: flex;
     flex-direction: column;
@@ -78,15 +80,14 @@ main p {
     outline: none;
 }
 
+/* Separador */
 hr {
     border: none;
     border-top: 1px solid #e2e8f0;
     margin: 0;
 }
 
-
-
-/**************************************************************************************************************************/
+/* Botones */
 .btn {
     text-decoration: none;
     color: #fff;
@@ -94,11 +95,13 @@ hr {
     padding: 7px;
     background-color: #272727;
     border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 /*Efecto al ser precionado los botones*/
 .btn:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
 }
 
 /* Footer*/
