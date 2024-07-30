@@ -17,9 +17,9 @@
         </div>
     </header>
     <main>
-
-        <p id="curso"></p>
         <div class="nota-container">
+        <button class="btn btn-volver" id="btn-volver">Volver</button>
+        <p id="curso"></p>
             <div class="nota-row">
                 <label for="continua1">Continua 1</label>
                 <div class="input-group">
@@ -86,15 +86,20 @@
             <div class="nota-row">
                 <label for="nota-minima">Nota Minima Aprobatoria</label>
                 <div class="input-group">
-                    <input type="number" id="nota-minima" name="nota-minima" min="0" max="20" placeholder="nota">
+                    <select name="nota-minima" id="nota-minima">
+                        <option selected value="10.5">10.5</option>
+                        <option value="11.0">11.0</option>
+                    </select>
                 </div>
             </div>
             <hr>
+            <input type="submit" id="calcular" value="Calcular" class="btn">
 
             <p id="nota-final"></p>
+            <p id="nota-faltante"></p>
 
-            <input type="submit" id="calcular" value="Calcular" class="btn">
         </div>
+
         
     </main>
     <footer>

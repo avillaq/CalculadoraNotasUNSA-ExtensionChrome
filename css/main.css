@@ -18,8 +18,11 @@ body {
     font-family: inherit;
     color: #fff;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
+}
+main {
+    font-size: 14px;
 }
 main p {
     text-align: center;
@@ -78,12 +81,20 @@ main p {
     width: 48px;
     text-align: center;
     outline: none;
+    font-size: 14px;
+}
+.input-group select {
+    border: 1px solid #e2e8f0;
+    padding:5px;
+    border-radius: 5px; 
+    outline: none;
+    font-size: 14px;
 }
 
 /* Separador */
 hr {
     border: none;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #c9ced5;
     margin: 0;
 }
 
@@ -97,11 +108,19 @@ hr {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    border: none;
+    font-size: 14px;
 }
 
 /*Efecto al ser precionado los botones*/
 .btn:active {
     transform: scale(0.96);
+}
+
+.btn-volver {
+    background-color: #0d6efd;
+    display: flex;
+    justify-content: center;
 }
 
 /* Footer*/

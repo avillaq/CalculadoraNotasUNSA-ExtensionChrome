@@ -50,8 +50,8 @@ function init(){
         notaFinal = notaFinal.toFixed(2);
         document.querySelector("#nota-final").innerHTML = `NOTA FINAL: ${notaFinal}`;
 
+        getNotaFaltante(notaFinal);
     });
-
 
     function getTipoIndentificador(nota) {
         let parcial = nota.parcial;
@@ -64,6 +64,17 @@ function init(){
             return "examen"+examenMatch[1];
         }
         return null; // Retornar null si no coincide con ninguno
+    }
+
+    function getNotaFaltante(notaFinal) {
+        let notaMinima = document.querySelector("#nota-minima").value; 
+        let notaFaltante = 0.0;
+        if (notaMinima) {
+            if ((notaMinima - notaFinal) > 0) {
+                notaFaltante = notaMinima - notaFinal;
+            }
+            document.querySelector("#nota-faltante").innerHTML = `NOTA FALTANTE: ${notaFaltante.toFixed(2)}`;
+        }
     }
 
 }
