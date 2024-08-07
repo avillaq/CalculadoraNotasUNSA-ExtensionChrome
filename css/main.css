@@ -130,4 +130,12 @@ footer p {
     padding: 7px 0;
     color: #fff;
     background-color: #64001d;
+
+    a {
+        display: inline-block;
+        margin-left: 8px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+    }
 }
