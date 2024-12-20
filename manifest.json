@@ -25,7 +25,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://extranet.unsa.edu.pe/*"],
+      "matches": ["http://extranet.unsa.edu.pe/sisacad/parciales18/index.php"],
       "js": ["js/content-script.js"]
     }
   ],
