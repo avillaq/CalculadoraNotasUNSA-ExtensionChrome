@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', init);
 function init() {
     chrome.storage.session.get(['notas']).then(function (result) {
+        let tituloCursos = document.querySelector("#titulo-cursos");
         let listaCursos = document.querySelector("#lista-cursos");
         let notas = result.notas;
         console.log(notas);
@@ -14,27 +15,30 @@ function init() {
             cursos.forEach(curso => {
                 content += `<button class="list-item" id="curso">${curso}</button>`;
             });
+            tituloCursos.innerHTML = `Elige un curso para empezar: `;
             listaCursos.innerHTML = content;
 
             activarBotonesCursos();
         
         } else if (notas && notas.length === 0) {
-            listaCursos.innerHTML = `
-                    <p>No hay cursos disponibles</p>
+            tituloCursos.innerHTML = `
+                    No hay cursos disponibles
                     `;
         } else {
             chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 let url = tabs[0].url;
                 console.log(url);
                 if (url.search("http://extranet.unsa.edu.pe/sisacad/parciales18") === -1) {
+                    tituloCursos.innerHTML = `
+                    Ingresa a la página de notas
+                `;
                     listaCursos.innerHTML = `
-                    <p>Ingresa a la página de notas</p>
                     <button class="list-item" id="btn-irNotas">Ir a notas</button>
                 `;
         
                     activarBotonIrNotas();
                 } else {
-                    listaCursos.innerHTML = `
+                    tituloCursos.innerHTML = `
                     <p>Ingresa a tus notas</p>
                 `;
 
