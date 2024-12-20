@@ -17,14 +17,29 @@ function init() {
             listaCursos.innerHTML = content;
 
             activarBotonesCursos();
-
-        } else {
+        
+        } else if (notas && notas.length === 0) {
             listaCursos.innerHTML = `
                     <p>No hay cursos disponibles</p>
-                    <button class="list-item" id="btn-refrescar">Refrescar</button>
+                    `;
+        } else {
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                let url = tabs[0].url;
+                console.log(url);
+                if (url.search("http://extranet.unsa.edu.pe/sisacad/parciales18") === -1) {
+                    listaCursos.innerHTML = `
+                    <p>Ingresa a la página de notas</p>
+                    <button class="list-item" id="btn-irNotas">Ir a notas</button>
                 `;
         
-            activarBotonRefrescar();
+                    activarBotonIrNotas();
+                } else {
+                    listaCursos.innerHTML = `
+                    <p>Ingresa a tus notas</p>
+                `;
+
+                }
+            });
         }
     });
 
@@ -42,22 +57,11 @@ function init() {
         );
     }
 
-    function activarBotonRefrescar() {
-        const btnRefrescar = document.querySelector("#btn-refrescar");
-        btnRefrescar.addEventListener('click', function (e) {
+    function activarBotonIrNotas() {
+        const btnIrNotas = document.querySelector("#btn-irNotas");
+        btnIrNotas.addEventListener('click', function (e) {
             e.preventDefault();
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                let url = tabs[0].url;
-                console.log(url);
-                if (url.search("http://extranet.unsa.edu.pe/sisacad/parciales18") !== -1) {
-                    chrome.scripting.executeScript({
-                        target: { tabId: tabs[0].id },
-                        files: ['js/content-script.js']
-                    }).then(() => {
-                        init()
-                    });
-                } 
-            });
+            chrome.tabs.create({ url: 'http://extranet.unsa.edu.pe/sisacad/parciales18'});
         });
     }
 }
