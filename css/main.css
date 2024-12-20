@@ -123,6 +123,15 @@ hr {
     justify-content: center;
 }
 
+/* Parrafos de resultados */
+.nota-final {
+    font-size: 16px;
+}
+.nota-faltante {
+    font-size: 13px;
+}
+
+
 /* Footer*/
 footer p {
     text-align: center;
