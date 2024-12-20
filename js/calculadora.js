@@ -3,7 +3,7 @@ function init(){
     
     const urlParams = new URLSearchParams(window.location.search);
     const curso = urlParams.get('curso');
-    document.getElementById('curso').innerText = curso;
+    document.querySelector('#curso').innerText = curso;
 
     chrome.storage.session.get(['notas']).then(function (result) {
         let notas = result.notas.filter(nota => nota.curso === curso);
