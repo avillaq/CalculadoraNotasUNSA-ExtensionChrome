@@ -27,10 +27,12 @@ Esta extensión de Chrome o navegadores basados en chromium permite a los estudi
 - ¡Listo! Obtén tu nota final y la nota faltante para aprobar
 ## Screenshots
 Lista de cursos
-<img src="screenshots/lista.png" width="400">
+
+<img src="screenshots/lista.png" width="200">
 
 Calculadora
-<img src="screenshots/calculadora.png" width="400">
+
+<img src="screenshots/calculadora.png" width="200">
 
 ## 👨‍💻 Desarrollador
 Hecho por Alexander VQ -> [avillaq](https://www.github.com/avillaq)
