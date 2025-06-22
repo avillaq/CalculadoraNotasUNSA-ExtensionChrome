@@ -13,12 +13,16 @@ function init() {
             let cursos = Array.from(setCursos);
             let content = "";
             
-            content += `<button class="list-item" id="btn-resumen-general">Ver Resumen General</button>`;
+            content += `<button class="list-item btn-resumen-general" id="btn-resumen-general">
+                            Ver Resumen General
+                        </button>`;
+            
+            content += `<div class="separador-cursos"></div>`;
             
             cursos.forEach(curso => {
                 content += `<button class="list-item" id="curso">${curso}</button>`;
             });
-            tituloCursos.innerHTML = `Elige un curso para empezar: `;
+            tituloCursos.innerHTML = `Elige una opción: `;
             listaCursos.innerHTML = content;
 
             activarBotonesCursos();
