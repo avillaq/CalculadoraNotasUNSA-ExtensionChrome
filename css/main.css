@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: Verdana, Tahoma, sans-serif;
+    font-family: 'Nunito Sans', sans-serif, system-ui, Arial, Helvetica;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
@@ -30,6 +32,10 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
     background: #4a0015;
+}
+
+button, input, select, label {
+    font-family: 'Nunito Sans', sans-serif, system-ui, Arial, Helvetica !important;
 }
 
 /* Header side */
