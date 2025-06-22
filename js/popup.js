@@ -12,6 +12,9 @@ function init() {
             });
             let cursos = Array.from(setCursos);
             let content = "";
+            
+            content += `<button class="list-item" id="btn-resumen-general">Ver Resumen General</button>`;
+            
             cursos.forEach(curso => {
                 content += `<button class="list-item" id="curso">${curso}</button>`;
             });
@@ -19,6 +22,7 @@ function init() {
             listaCursos.innerHTML = content;
 
             activarBotonesCursos();
+            activarBotonResumenGeneral();
         
         } else if (notas && notas.length === 0) {
             tituloCursos.innerHTML = `No hay cursos disponibles`;
@@ -74,6 +78,14 @@ function init() {
         btnCalcularManual.addEventListener('click', function (e) {
             e.preventDefault();
             window.location.href = 'calculadora.html?curso=' + encodeURIComponent('Curso Manual');
+        });
+    }
+
+    function activarBotonResumenGeneral() {
+        const btnResumenGeneral = document.querySelector("#btn-resumen-general");
+        btnResumenGeneral.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'resumen.html';
         });
     }
 }
