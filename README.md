@@ -18,27 +18,27 @@ Esta extensión de Chrome o navegadores basados en chromium permite a los estudi
 Interfaz principal mostrando la opción de resumen general y lista de cursos disponibles.
 
 <div align="center">
-  <img src="screenshots/lista.png" width="300" alt="Lista de cursos">
+  <img src="screenshots/lista.png" width="500" alt="Lista de cursos">
 </div>
 
 ### Calculadora de Notas
 Calculadora individual por curso con carga automática de notas y cálculos en tiempo real.
 
 <div align="center">
-  <img src="screenshots/calculadora.png" width="300" alt="Calculadora de notas">
+  <img src="screenshots/calculadora.png" width="500" alt="Calculadora de notas">
 </div>
 
 ### Resumen General de Notas
 Vista consolidada de todos los cursos con notas finales y faltantes para aprobar.
 
 <div align="center">
-  <img src="screenshots/resumen.png" width="300" alt="Resumen general">
+  <img src="screenshots/resumen.png" width="500" alt="Resumen general">
 </div>
 
 ## 🔧 Instalación
 
 ### Desde Chrome Web Store (Recomendado)
-1. Visita [Chrome Web Store - Calculadora de Notas UNSA] (https://chromewebstore.google.com/detail/calculadora-de-notas-unsa/pdgpmpobjpiinaieliceiacofpmnjoph)
+1. Visita [Chrome Web Store - Calculadora de Notas UNSA](https://chromewebstore.google.com/detail/calculadora-de-notas-unsa/pdgpmpobjpiinaieliceiacofpmnjoph)
 2. Haz clic en "Agregar a Chrome"
 3. Confirma la instalación
 
