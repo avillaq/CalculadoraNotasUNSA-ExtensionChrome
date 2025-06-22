@@ -20,6 +20,10 @@ function init(){
 
     document.querySelector("#calcular").addEventListener('click', function (e) {
         e.preventDefault();
+        // Limpiar animaciones anteriores
+        document.querySelector("#nota-final").classList.remove('show');
+        document.querySelector("#nota-faltante").classList.remove('show');
+
         let notaFinal = 0.0;
         for (let i = 1; i <= 3; i++) {
             let notaContinua = document.querySelector(`#continua${i}`).value;
@@ -40,6 +44,17 @@ function init(){
         document.querySelector("#nota-final").innerHTML = `NOTA FINAL: ${notaFinal}`;
 
         getNotaFaltante(notaFinal);
+
+        // Añadir animaciones despues de un pequeño delay
+        setTimeout(() => {
+            document.querySelector("#nota-final").classList.add('show');
+            document.querySelector("#nota-faltante").classList.add('show');
+            
+            document.querySelector("#nota-final").scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        }, 100);
     });
 
     document.querySelector("#btn-volver").addEventListener('click', function (e) {

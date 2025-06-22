@@ -4,6 +4,32 @@ body {
     padding: 0;
     background-color: #ffffff;
     width: 350px;
+    height: 500px;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Estilo personalizado para la scrollbar */
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #64001d;
+    border-radius: 3px;
+    opacity: 0.7;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #4a0015;
 }
 
 /* Header side */
@@ -13,6 +39,7 @@ body {
     align-items: center;
     padding: 8px 0;
     background-color: #64001d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .header p {
     font-family: inherit;
@@ -20,82 +47,125 @@ body {
     display: inline-block;
     font-size: 18px;
     margin: 0;
+    font-weight: 600;
 }
 main {
     font-size: 14px;
+    flex: 1;
+    padding: 8px 0;
 }
 main p {
     text-align: center;
     font-weight: bold;
+    margin: 6px 10px;
+    color: #2d3748;
 }
 
 /* Listado de cursos */
 .list-cursos {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
     padding: 0 10px;
+    margin-bottom: 8px;
 }
 .list-cursos .list-item {
     width: 100%;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    border-color: #cbd5e0;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    padding: 14px 16px;
+    background-color: #f7fafc;
+    border-radius: 4px;
+    border: 1px solid #cbd5e0;
+    transition: all 0.3s ease;
     cursor: pointer;
+    font-weight: 500;
+    text-align: left;
+    color: #2d3748;
 }
 .list-item:hover {
-    transform: translateY(-0.05rem); 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    transform: translateY(-1px); 
+    box-shadow: 0 3px 8px rgba(100, 0, 29, 0.15);
+    border-color: #64001d;
+    background-color: #fff;
 }
 
 /* Nota */
 .nota-container {
     display: flex;
     flex-direction: column;
-    padding: 0 20px;
+    padding: 0 12px;
+    gap: 4px;
 }
 
 .nota-row {
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    margin: 4px 0;
+    padding: 2px 0;
 }
 
 .nota-row label {
     flex: 1;
-    margin-right: 5px;
+    margin-right: 6px;
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 13px;
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 8px;
 }
 
 .input-group input[type="number"] {
-    border: 1px solid #e2e8f0;
-    padding:5px;
-    border-radius: 5px; 
-    width: 52px;
+    border: 1px solid #cbd5e0;
+    padding: 5px 6px;
+    border-radius: 3px; 
+    width: 60px;
     text-align: center;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    background-color: #fff;
 }
+
+.input-group input[type="number"]:focus {
+    border-color: #64001d;
+    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
+}
+
 .input-group select {
-    border: 1px solid #e2e8f0;
-    padding:5px;
-    border-radius: 5px; 
+    border: 1px solid #cbd5e0;
+    padding: 5px 6px;
+    border-radius: 3px; 
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.input-group select:focus {
+    border-color: #64001d;
+    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
+}
+
+.input-group div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.input-group span {
+    font-size: 12px;
+    color: #64001d;
+    font-weight: 600;
 }
 
 /* Separador */
 hr {
     border: none;
-    border-top: 1px solid #a5a8ac;
-    margin: 0;
+    border-top: 1px solid #cbd5e0;
+    margin: 6px 0;
 }
 
 /* Botones */
@@ -103,13 +173,15 @@ hr {
     text-decoration: none;
     color: #fff;
     display: inline-block;
-    padding: 7px;
+    padding: 6px 10px;
     background-color: #272727;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 6px;
     border: none;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 /*Efecto al ser precionado los botones*/
@@ -117,34 +189,119 @@ hr {
     transform: scale(0.96);
 }
 
+.btn:hover {
+    background-color: #1a1a1a;
+}
+
 .btn-volver {
     background-color: #0d6efd;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.btn-volver:hover {
+    background-color: #0b5ed7;
+}
+
+/* Curso seleccionado */
+#curso {
+    background-color: #edf2f7;
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: 1px solid #cbd5e0;
+    margin: 6px 0;
+    font-weight: 600;
+    color: #64001d;
+    text-align: center;
 }
 
 /* Parrafos de resultados */
 .nota-final {
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #64001d;
+    text-align: center;
+    margin: 6px 0 2px 0;
+    padding: 5px;
+    background-color: #edf2f7;
+    border-radius: 3px;
+    border-left: 4px solid #64001d;
+    /*Para la animacion */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
 }
+
+.nota-final.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .nota-faltante {
     font-size: 13px;
+    color: #2d3748;
+    text-align: center;
+    margin: 2px 0 6px 0;
+    padding: 4px;
+    background-color: #fed7d7;
+    border-radius: 3px;
+    border-left: 4px solid #e53e3e;
+    /*Para la animacion */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.nota-faltante.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer*/
+footer {
+    margin-top: auto;
+}
+
+footer p {
+    text-align: center;
+    margin: 0;
+    padding: 8px 0;
+    color: #fff;
+    background-color: #64001d;
+    font-size: 12px;
+}
+
+footer p a {
+    display: inline-block;
+    margin-left: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+footer p a:hover {
+    transform: scale(1.1);
 }
 
 
-/* Footer*/
-footer p {
-    text-align: center;
-    margin: 10px 0 0 0;
-    padding: 7px 0 10px 0;
-    color: #fff;
-    background-color: #64001d;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
-    a {
-        display: inline-block;
-        margin-left: 8px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-    }
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Estados de validación visual */
+.input-group input:valid {
+    border-color: #38a169;
+}
+
+.input-group input:invalid:not(:placeholder-shown) {
+    border-color: #e53e3e;
 }
