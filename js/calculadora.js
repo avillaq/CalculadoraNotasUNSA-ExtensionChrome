@@ -5,18 +5,20 @@ function init(){
     const curso = urlParams.get('curso');
     document.querySelector('#curso').innerText = curso;
 
-    chrome.storage.session.get(['notas']).then(function (result) {
-        let notas = result.notas.filter(nota => nota.curso === curso);
-        if (notas) {
-            let identidicador;
-            notas.forEach(curso => {
-                identidicador = getTipoIndentificador(curso);
-                
-                document.querySelector(`#${identidicador}`).value = curso.nota;
-                document.querySelector(`#peso-${identidicador}`).value = curso.peso.replace('%','');
-            });
-        }
-    });
+    if (curso !== 'Curso Manual') {
+        chrome.storage.session.get(['notas']).then(function (result) {
+            let notas = result.notas?.filter(nota => nota.curso === curso);
+            if (notas) {
+                let identidicador;
+                notas.forEach(curso => {
+                    identidicador = getTipoIndentificador(curso);
+                    
+                    document.querySelector(`#${identidicador}`).value = curso.nota;
+                    document.querySelector(`#peso-${identidicador}`).value = curso.peso.replace('%','');
+                });
+            }
+        });
+    }
 
     document.querySelector("#calcular").addEventListener('click', function (e) {
         e.preventDefault();
@@ -85,5 +87,4 @@ function init(){
             document.querySelector("#nota-faltante").innerHTML = `NOTA FALTANTE: ${notaFaltante.toFixed(2)}`;
         }
     }
-
 }
