@@ -31,7 +31,18 @@ function init() {
         } else if (notas && notas.length === 0) {
             tituloCursos.innerHTML = `No hay cursos disponibles`;
             listaCursos.innerHTML = `
-                <button class="list-item" id="btn-calcular-manual">Calcular Notas Manualmente</button>
+                <div class="no-cursos-container">
+                    <div class="no-cursos-message">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>No se encontraron cursos</strong><br>
+                        No hay notas disponibles en el sistema académico
+                    </div>
+                    <div class="acciones-container">
+                        <button class="list-item" id="btn-calcular-manual">
+                            Calcular Notas Manualmente
+                        </button>
+                    </div>
+                </div>
             `;
             activarBotonCalcularManual();
         } else {
@@ -41,8 +52,21 @@ function init() {
                 if (url.search("http://extranet.unsa.edu.pe/sisacad/parciales18") === -1) {
                     tituloCursos.innerHTML = `Ingresa a la página de notas`;
                     listaCursos.innerHTML = `
-                        <button class="list-item" id="btn-irNotas">Ir a notas</button>
-                        <button class="list-item" id="btn-calcular-manual">Calcular Notas Manualmente</button>
+                        <div class="no-cursos-container">
+                            <div class="no-cursos-message">
+                                <i class="fas fa-external-link-alt"></i>
+                                <strong>Accede a tus notas</strong><br>
+                                Dirígete a la página de notas de la UNSA para cargar automáticamente tus cursos
+                            </div>
+                            <div class="acciones-container">
+                                <button class="list-item" id="btn-irNotas">
+                                    Ir a página de notas
+                                </button>
+                                <button class="list-item" id="btn-calcular-manual">
+                                    Calcular Notas Manualmente
+                                </button>
+                            </div>
+                        </div>
                     `;
         
                     activarBotonIrNotas();
@@ -50,7 +74,18 @@ function init() {
                 } else {
                     tituloCursos.innerHTML = `<p>Ingresa a tus notas</p>`;
                     listaCursos.innerHTML = `
-                        <button class="list-item" id="btn-calcular-manual">Calcular Notas Manualmente</button>
+                        <div class="no-cursos-container">
+                            <div class="no-cursos-message">
+                                <i class="fas fa-mouse-pointer"></i>
+                                <strong>Carga tus notas</strong><br>
+                                Ingresa tu usuario y clave para acceder a tus notas.
+                            </div>
+                            <div class="acciones-container">
+                                <button class="list-item" id="btn-calcular-manual">
+                                    Calcular Notas Manualmente
+                                </button>
+                            </div>
+                        </div>
                     `;
                     activarBotonCalcularManual();
                 }
