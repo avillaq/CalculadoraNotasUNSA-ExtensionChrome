@@ -14,6 +14,11 @@ function init() {
         e.preventDefault();
         window.location.href = 'popup.html';
     });
+
+    document.querySelector("#btn-imprimir").addEventListener('click', function (e) {
+        e.preventDefault();
+        generarPDF();
+    });
 }
 
 function mostrarResumenCursos(notas) {
@@ -91,4 +96,48 @@ function calcularNotasCurso(notasCurso) {
 
 function getClaseNota(nota, minima) {
     return parseFloat(nota) >= minima ? 'nota-aprobada' : 'nota-desaprobada';
+}
+
+function generarPDF() {
+    const original = document.querySelector('#resumen-cursos');
+
+    // clon temporal
+    const clon = original.cloneNode(true);
+    clon.id = 'resumen-pdf-temp';
+    clon.classList.add('pdf-grid');
+
+    // contenedor del pdf
+    const contenedorPDF = document.createElement('div');
+
+    // encabezado
+    const encabezado = document.createElement('div');
+    encabezado.className = 'pdf-header';
+    encabezado.innerHTML = `
+        <h2>Resumen de Notas - UNSA</h2>
+        <p>Fecha: ${new Date().toLocaleDateString('es-PE', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}</p>
+    `;
+
+    contenedorPDF.appendChild(encabezado);
+    contenedorPDF.appendChild(clon);
+    document.body.appendChild(contenedorPDF);
+
+    const opciones = {
+        margin: [8, 8, 8, 8],
+        filename: `resumen-notas-${new Date().toISOString().slice(0, 10)}.pdf`,
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    const limpiar = () => {
+        document.body.removeChild(contenedorPDF);
+    };
+
+    html2pdf().set(opciones).from(contenedorPDF).save()
+        .then(limpiar)
+        .catch(limpiar);
 }

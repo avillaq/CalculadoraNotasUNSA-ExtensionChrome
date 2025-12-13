@@ -64,7 +64,7 @@ main p {
     text-align: center;
     font-weight: bold;
     margin: 6px 10px;
-    color: #2d3748;
+    color: #232c3b;
 }
 
 /* Listado de cursos */
@@ -85,7 +85,7 @@ main p {
     cursor: pointer;
     font-weight: 500;
     text-align: left;
-    color: #2d3748;
+    color: #232c3b;
 }
 .list-item:hover {
     transform: translateY(-1px); 
@@ -111,18 +111,25 @@ main p {
     box-shadow: 0 3px 8px rgba(100, 0, 29, 0.2);
 }
 
-/* sparador entre resumen y cursos */
-.separador-cursos {
+/* sparador entre resumen y cursos. Separador para la opcion de calculadora manual */
+.separador-cursos, .separador-calculadora-manual {
     margin: 14px 10px 7px 10px;
     padding: 8px 0;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #cbd5e0;
     text-align: center;
 }
 
 .separador-cursos::before {
     content: 'Cursos disponibles';
-    font-size: 11px;
-    color: #718096;
+    font-size: 12px;
+    color: #5a687e;
+    font-weight: 500;
+}
+
+.separador-calculadora-manual::before {
+    content: 'O calcula manualmente';
+    font-size: 12px;
+    color: #5a687e;
     font-weight: 500;
 }
 
@@ -145,7 +152,7 @@ main p {
     flex: 1;
     margin-right: 6px;
     font-weight: 500;
-    color: #2d3748;
+    color: #232c3b;
     font-size: 13px;
 }
 
@@ -279,7 +286,7 @@ hr {
 
 .nota-faltante {
     font-size: 13px;
-    color: #2d3748;
+    color: #232c3b;
     text-align: center;
     margin: 2px 0 6px 0;
     padding: 4px;
@@ -345,6 +352,14 @@ input[type=number] {
 }
 
 /* Estilos para resumen de cursos */
+.btn-imprimir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
 .curso-card {
     background-color: #f7fafc;
     border: 1px solid #cbd5e0;
@@ -385,7 +400,7 @@ input[type=number] {
 
 .nota-label {
     font-size: 12px;
-    color: #2d3748;
+    color: #232c3b;
     font-weight: 500;
 }
 
@@ -415,10 +430,43 @@ input[type=number] {
 
 .notas-parciales small {
     display: block;
-    color: #718096;
+    color: #5a687e;
     font-size: 10px;
     line-height: 1.3;
     margin: 1px 0;
+}
+
+#resumen-pdf-temp.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+#resumen-pdf-temp.pdf-grid .curso-card {
+    margin-bottom: 0;
+    break-inside: avoid;
+}
+
+/* estilos para el PDF */
+.pdf-header {
+    text-align: center;
+    padding: 16px;
+    border-bottom: 2px solid #64001d;
+    margin-bottom: 16px;
+}
+
+.pdf-header h2 {
+    color: #64001d;
+    margin: 0 0 8px 0;
+    font-size: 20px;
+}
+
+.pdf-header p {
+    color: #5a687e;
+    margin: 0;
+    font-size: 14px;
 }
 
 /* estilos cuando no hay cursos */

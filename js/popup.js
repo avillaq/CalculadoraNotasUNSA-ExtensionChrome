@@ -3,7 +3,6 @@ async function init() {
     const tituloCursos = document.querySelector("#titulo-cursos");
     const listaCursos = document.querySelector("#lista-cursos");
     const { notas, fuente } = await obtenerNotas();
-    console.log({ notas, fuente });
     if (notas.length > 0) {
         let setCursos = new Set();
         notas.forEach(nota => {
