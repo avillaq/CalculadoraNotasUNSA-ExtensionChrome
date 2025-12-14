@@ -98,7 +98,12 @@ function getClaseNota(nota, minima) {
     return parseFloat(nota) >= minima ? 'nota-aprobada' : 'nota-desaprobada';
 }
 
-function generarPDF() {
+async function getInfoEstudiante() {
+    const local = await chrome.storage.local.get(['info']);
+    return local.info || {};
+}
+
+async function generarPDF() {
     const original = document.querySelector('#resumen-cursos');
 
     // clon temporal
@@ -109,17 +114,24 @@ function generarPDF() {
     // contenedor del pdf
     const contenedorPDF = document.createElement('div');
 
+    const infoEstudiante = await getInfoEstudiante();
+
     // encabezado
     const encabezado = document.createElement('div');
     encabezado.className = 'pdf-header';
     encabezado.innerHTML = `
-        <h2>Resumen de Notas - UNSA</h2>
-        <p>Fecha: ${new Date().toLocaleDateString('es-PE', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        })}</p>
-    `;
+            <h2>Resumen de Notas - UNSA</h2>
+            <div class="info-estudiante">
+                <p><strong>Estudiante:</strong> ${infoEstudiante.nombreEstudiante || 'No disponible'}</p>
+                <p><strong>Carrera:</strong> ${infoEstudiante.carrera || 'No disponible'}</p>
+                <p><strong>Periodo:</strong> ${infoEstudiante.periodo || 'No disponible'}</p>
+            </div>
+            <p class="fecha-generacion">${new Date().toLocaleDateString('es-PE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })}</p>
+        `;
 
     contenedorPDF.appendChild(encabezado);
     contenedorPDF.appendChild(clon);

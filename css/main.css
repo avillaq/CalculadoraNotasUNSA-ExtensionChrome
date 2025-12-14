@@ -452,21 +452,38 @@ input[type=number] {
 /* estilos para el PDF */
 .pdf-header {
     text-align: center;
-    padding: 16px;
+    padding: 12px 0;
     border-bottom: 2px solid #64001d;
     margin-bottom: 16px;
 }
 
 .pdf-header h2 {
     color: #64001d;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     font-size: 20px;
 }
 
-.pdf-header p {
+.info-estudiante {
+    text-align: left;
+}
+
+.info-estudiante p {
+    margin: 6px 0;
+    font-size: 13px;
+    color: #232c3b;
+}
+
+.info-estudiante strong {
+    color: #64001d;
+    font-weight: 600;
+}
+
+.fecha-generacion {
     color: #5a687e;
-    margin: 0;
-    font-size: 14px;
+    margin: 8px 0 0 0;
+    font-size: 12px;
+    text-align: end;
+    font-style: italic;
 }
 
 /* estilos cuando no hay cursos */
