@@ -54,7 +54,7 @@ function mostrarResumenCursos(notas) {
                 <div class="notas-parciales">
                     ${resultados.detalles.map(detalle =>
             `<small>${detalle.parcial}: ${detalle.nota} (${detalle.peso})</small>`
-        ).join('<br>')}
+        ).join('')}
                 </div>
             </div>
         `;
@@ -141,7 +141,7 @@ async function generarPDF() {
         margin: [8, 8, 8, 8],
         filename: `resumen-notas-${new Date().toISOString().slice(0, 10)}.pdf`,
         image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2, useCORS: true },
+        html2canvas: { scale: 3, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
@@ -149,7 +149,19 @@ async function generarPDF() {
         document.body.removeChild(contenedorPDF);
     };
 
-    html2pdf().set(opciones).from(contenedorPDF).save()
-        .then(limpiar)
+    html2pdf().set(opciones).from(contenedorPDF).toPdf().get('pdf')
+        .then(function (pdf) {
+            const filename = opciones.filename;
+            const cardCount = clon.querySelectorAll('.curso-card').length;
+
+            let totalPages = pdf.internal.getNumberOfPages();
+            
+            // si hay mas de 9 cards, se elimina la ultima pagina en blanco
+            if (cardCount <= 9 && totalPages > 1) {
+                try { pdf.deletePage(totalPages); } catch (e) {}
+            }
+
+            try { pdf.save(filename); } finally { limpiar(); }
+        })
         .catch(limpiar);
 }
