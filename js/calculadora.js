@@ -52,9 +52,9 @@ function init(){
             document.querySelector("#nota-final").classList.add('show');
             document.querySelector("#nota-faltante").classList.add('show');
             
-            document.querySelector("#nota-final").scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
+            window.scrollTo({
+                top: document.documentElement.scrollHeight || document.body.scrollHeight,
+                behavior: 'smooth'
             });
         }, 100);
     });
