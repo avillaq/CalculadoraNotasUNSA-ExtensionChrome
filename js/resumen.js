@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', init);
 
+let _notasResumen = [];
+
 function init() {
     chrome.storage.session.get(['notas']).then(function (result) {
         let notas = result.notas;
+        _notasResumen = notas || [];
         if (notas && notas.length > 0) {
-            mostrarResumenCursos(notas);
+            const sortSelect = document.querySelector('#sort-select');
+            const orden = sortSelect ? sortSelect.value : 'mayor';
+            mostrarResumenCursos(notas, orden);
         } else {
             document.querySelector('#resumen-cursos').innerHTML = '<p>No hay datos de notas disponibles</p>';
         }
@@ -19,20 +24,41 @@ function init() {
         e.preventDefault();
         generarPDF();
     });
+
+    document.querySelector('#sort-select').addEventListener('change', function (e) {
+        mostrarResumenCursos(_notasResumen, e.target.value);
+    });
 }
 
-function mostrarResumenCursos(notas) {
+function mostrarResumenCursos(notas, orden = 'mayor') {
+    if (!notas || notas.length === 0) {
+        document.querySelector('#resumen-cursos').innerHTML = '<p>No hay datos de notas disponibles</p>';
+        return;
+    }
+
     let setCursos = new Set();
     notas.forEach(nota => {
         setCursos.add(nota.curso);
     });
     let cursos = Array.from(setCursos);
 
-    let resumenHTML = '';
-
-    cursos.forEach(curso => {
+    let resumenCursos = cursos.map(curso => {
         let notasCurso = notas.filter(nota => nota.curso === curso);
         let resultados = calcularNotasCurso(notasCurso);
+        return { curso, resultados };
+    });
+
+    // ordenar segun la oopcion seleccionada
+    resumenCursos.sort((a, b) => {
+        const na = parseFloat(a.resultados.notaFinal || 0);
+        const nb = parseFloat(b.resultados.notaFinal || 0);
+        if (orden === 'menor') return na - nb;
+        return nb - na;
+    });
+
+    let resumenHTML = '';
+
+    resumenCursos.forEach(({ curso, resultados }) => {
 
         resumenHTML += `
             <div class="curso-card">
@@ -155,10 +181,10 @@ async function generarPDF() {
             const cardCount = clon.querySelectorAll('.curso-card').length;
 
             let totalPages = pdf.internal.getNumberOfPages();
-            
+
             // si hay mas de 9 cards, se elimina la ultima pagina en blanco
             if (cardCount <= 9 && totalPages > 1) {
-                try { pdf.deletePage(totalPages); } catch (e) {}
+                try { pdf.deletePage(totalPages); } catch (e) { }
             }
 
             try { pdf.save(filename); } finally { limpiar(); }

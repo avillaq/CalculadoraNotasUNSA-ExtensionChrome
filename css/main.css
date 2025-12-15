@@ -38,6 +38,21 @@ button, input, select, label {
     font-family: 'Nunito Sans', sans-serif, system-ui, Arial, Helvetica !important;
 }
 
+select {
+    border: 1px solid #cbd5e0;
+    padding: 5px 6px;
+    border-radius: 3px; 
+    outline: none;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+}
+
+select:focus {
+    border-color: #64001d;
+    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
+}
+
 /* Header side */
 .header {
     display: flex;
@@ -175,21 +190,6 @@ main p {
 }
 
 .input-group input[type="number"]:focus {
-    border-color: #64001d;
-    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
-}
-
-.input-group select {
-    border: 1px solid #cbd5e0;
-    padding: 5px 6px;
-    border-radius: 3px; 
-    outline: none;
-    font-size: 14px;
-    background-color: #fff;
-    transition: border-color 0.2s ease;
-}
-
-.input-group select:focus {
     border-color: #64001d;
     box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
 }
@@ -438,23 +438,18 @@ input[type=number] {
     line-height: 1.3;
 }
 
-#resumen-pdf-temp {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    break-inside: auto;
-    page-break-inside: auto;
+/* Estilos para el filtro de resumen */
+.filtro-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
 }
 
-#resumen-pdf-temp.pdf-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: dense;
-    grid-auto-rows: minmax(0, auto);
-    gap: 12px;
-    max-width: 960px;
-    width: 100%;
-    margin: 0 auto;
+.filtro-container label {
+    font-weight: 600;
+    color: #4f5b6d;
+    font-size: 13px;
 }
 
 /* estilos para el PDF */
@@ -492,6 +487,25 @@ input[type=number] {
     font-size: 12px;
     text-align: end;
     font-style: italic;
+}
+
+#resumen-pdf-temp {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    break-inside: auto;
+    page-break-inside: auto;
+}
+
+#resumen-pdf-temp.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+    grid-auto-rows: minmax(0, auto);
+    gap: 12px;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 /* estilos cuando no hay cursos */
