@@ -20,11 +20,17 @@ async function init() {
         cursos.forEach(curso => {
             content += `<button class="list-item" id="curso">${curso}</button>`;
         });
+
+        content += `<div class="separador-calculadora-manual"></div>`;
+        content += `<button class="list-item" id="btn-calcular-manual">
+                        Calcular Notas Manualmente
+                    </button>`;
         tituloCursos.innerHTML = `Elige una opción: `;
         listaCursos.innerHTML = content;
 
         activarBotonesCursos();
         activarBotonResumenGeneral();
+        activarBotonCalcularManual();
 
     } else if (fuente === 'session') {
         tituloCursos.innerHTML = `No hay cursos disponibles`;
