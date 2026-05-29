@@ -30,11 +30,101 @@
     src: url('../fonts/nunito-sans-v19-latin-700.woff2') format('woff2');
 }
 
+:root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #f7fafc;
+    --surface-2: #edf2f7;
+    --surface-3: #ffffff;
+    --text: #232c3b;
+    --text-muted: #4f5b6d;
+    --text-subtle: #4a5568;
+    --border: #cbd5e0;
+    --accent: #64001d;
+    --accent-strong: #7a001f;
+    --accent-deep: #4a0015;
+    --accent-contrast: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-accent: rgba(100, 0, 29, 0.15);
+    --shadow-accent-strong: rgba(100, 0, 29, 0.2);
+    --ring: rgba(100, 0, 29, 0.1);
+    --btn: #272727;
+    --btn-hover: #1a1a1a;
+    --action: #0d6efd;
+    --action-hover: #0b5ed7;
+    --success: #38a169;
+    --success-bg: #c6f6d5;
+    --danger: #e53e3e;
+    --danger-bg: #fed7d7;
+    --scrollbar-track: #f1f1f1;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+        --bg: #0f1115;
+        --surface: #171a21;
+        --surface-2: #1f2632;
+        --surface-3: #131822;
+        --text: #e6e9ef;
+        --text-muted: #9aa4b2;
+        --text-subtle: #a5afbf;
+        --border: #2b3340;
+        --accent: #c0194f;
+        --accent-strong: #d9275b;
+        --accent-deep: #8a0b33;
+        --accent-contrast: #ffffff;
+        --shadow: rgba(0, 0, 0, 0.4);
+        --shadow-accent: rgba(192, 25, 79, 0.25);
+        --shadow-accent-strong: rgba(192, 25, 79, 0.35);
+        --ring: rgba(192, 25, 79, 0.35);
+        --btn: #2b303b;
+        --btn-hover: #363c48;
+        --action: #3b82f6;
+        --action-hover: #2563eb;
+        --success: #34d399;
+        --success-bg: #123627;
+        --danger: #f87171;
+        --danger-bg: #3a1c22;
+        --scrollbar-track: #151821;
+    }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f1115;
+    --surface: #171a21;
+    --surface-2: #1f2632;
+    --surface-3: #131822;
+    --text: #e6e9ef;
+    --text-muted: #9aa4b2;
+    --text-subtle: #a5afbf;
+    --border: #2b3340;
+    --accent: #c0194f;
+    --accent-strong: #d9275b;
+    --accent-deep: #8a0b33;
+    --accent-contrast: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-accent: rgba(192, 25, 79, 0.25);
+    --shadow-accent-strong: rgba(192, 25, 79, 0.35);
+    --ring: rgba(192, 25, 79, 0.35);
+    --btn: #2b303b;
+    --btn-hover: #363c48;
+    --action: #3b82f6;
+    --action-hover: #2563eb;
+    --success: #34d399;
+    --success-bg: #123627;
+    --danger: #f87171;
+    --danger-bg: #3a1c22;
+    --scrollbar-track: #151821;
+}
+
 body {
     font-family: 'Nunito Sans', sans-serif, system-ui, Arial, Helvetica;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
     width: 350px;
     height: 500px;
     max-height: 600px;
@@ -42,6 +132,7 @@ body {
     flex-direction: column;
     overflow-y: auto;
     scroll-behavior: smooth;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Estilo personalizado para la scrollbar */
@@ -50,55 +141,109 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--scrollbar-track);
     border-radius: 3px;
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #64001d;
+    background: var(--accent);
     border-radius: 3px;
     opacity: 0.7;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-    background: #4a0015;
+    background: var(--accent-deep);
 }
 
 button, input, select, label {
     font-family: 'Nunito Sans', sans-serif, system-ui, Arial, Helvetica !important;
+    color: inherit;
 }
 
 select {
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border);
     padding: 5px 6px;
     border-radius: 3px; 
     outline: none;
     font-size: 14px;
-    background-color: #fff;
+    background-color: var(--surface-3);
     transition: border-color 0.2s ease;
 }
 
 select:focus {
-    border-color: #64001d;
-    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--ring);
 }
 
 /* Header side */
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    background-color: #64001d;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 8px 10px;
+    gap: 8px;
+    background-color: var(--accent);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 .header p {
     font-family: inherit;
-    color: #fff;
+    color: var(--accent-contrast);
     display: inline-block;
     font-size: 18px;
     margin: 0;
     font-weight: 600;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 28px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent-contrast) 35%, transparent);
+    background-color: var(--surface-2);
+    background-color: color-mix(in srgb, var(--accent-contrast) 12%, transparent);
+    color: var(--accent-contrast);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px var(--shadow);
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-contrast), 0 0 0 4px var(--ring);
+}
+
+.theme-toggle .icon {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: inline;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .theme-toggle .icon-sun {
+        display: inline;
+    }
+
+    :root:not([data-theme]) .theme-toggle .icon-moon {
+        display: none;
+    }
 }
 main {
     font-size: 14px;
@@ -109,7 +254,7 @@ main p {
     text-align: center;
     font-weight: bold;
     margin: 6px 10px;
-    color: #232c3b;
+    color: var(--text);
 }
 
 /* Listado de cursos */
@@ -123,58 +268,58 @@ main p {
 .list-cursos .list-item {
     width: 100%;
     padding: 14px 16px;
-    background-color: #f7fafc;
+    background-color: var(--surface);
     border-radius: 4px;
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border);
     transition: all 0.3s ease;
     cursor: pointer;
     font-weight: 500;
     text-align: left;
-    color: #232c3b;
+    color: var(--text);
 }
 .list-item:hover {
     transform: translateY(-1px); 
-    box-shadow: 0 3px 8px rgba(100, 0, 29, 0.15);
-    border-color: #64001d;
-    background-color: #fff;
+    box-shadow: 0 3px 8px var(--shadow-accent);
+    border-color: var(--accent);
+    background-color: var(--surface-3);
 }
 
 /* Boton resumen general */
 .btn-resumen-general {
-    background-color: #64001d !important;
-    color: #fff !important;
+    background-color: var(--accent) !important;
+    color: var(--accent-contrast) !important;
     font-weight: 600;
-    border: 1px solid #64001d !important;
+    border: 1px solid var(--accent) !important;
     text-align: center !important;
     margin-top: 8px;
 }
 
 .btn-resumen-general:hover {
-    background-color: #7a001f !important;
-    border-color: #7a001f !important;
+    background-color: var(--accent-strong) !important;
+    border-color: var(--accent-strong) !important;
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(100, 0, 29, 0.2);
+    box-shadow: 0 3px 8px var(--shadow-accent-strong);
 }
 
 /* sparador entre resumen y cursos. Separador para la opcion de calculadora manual */
 .separador-cursos, .separador-calculadora-manual {
     margin: 14px 10px 7px 10px;
     padding: 8px 0;
-    border-top: 1px solid #cbd5e0;
+    border-top: 1px solid var(--border);
     text-align: center;
 }
 
 .separador-cursos::before {
     content: 'Cursos disponibles';
     font-size: 12px;
-    color: #4f5b6d;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
 .separador-calculadora-manual::before {
     content: 'O calcula manualmente';
     font-size: 12px;
-    color: #4f5b6d;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
@@ -197,7 +342,7 @@ main p {
     flex: 1;
     margin-right: 6px;
     font-weight: 500;
-    color: #232c3b;
+    color: var(--text);
     font-size: 13px;
 }
 
@@ -208,7 +353,7 @@ main p {
 }
 
 .input-group input[type="number"] {
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border);
     padding: 5px 6px;
     border-radius: 3px; 
     width: 60px;
@@ -216,12 +361,12 @@ main p {
     outline: none;
     font-size: 14px;
     transition: border-color 0.2s ease;
-    background-color: #fff;
+    background-color: var(--surface-3);
 }
 
 .input-group input[type="number"]:focus {
-    border-color: #64001d;
-    box-shadow: 0 0 0 2px rgba(100, 0, 29, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--ring);
 }
 
 .input-group div {
@@ -232,24 +377,24 @@ main p {
 
 .input-group span {
     font-size: 12px;
-    color: #64001d;
+    color: var(--accent);
     font-weight: 600;
 }
 
 /* Separador */
 hr {
     border: none;
-    border-top: 1px solid #cbd5e0;
+    border-top: 1px solid var(--border);
     margin: 6px 0;
 }
 
 /* Botones */
 .btn {
     text-decoration: none;
-    color: #fff;
+    color: var(--accent-contrast);
     display: inline-block;
     padding: 6px 10px;
-    background-color: #272727;
+    background-color: var(--btn);
     border-radius: 3px;
     cursor: pointer;
     margin-top: 6px;
@@ -265,11 +410,11 @@ hr {
 }
 
 .btn:hover {
-    background-color: #1a1a1a;
+    background-color: var(--btn-hover);
 }
 
 .btn-volver {
-    background-color: #0d6efd;
+    background-color: var(--action);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -277,18 +422,18 @@ hr {
 }
 
 .btn-volver:hover {
-    background-color: #0b5ed7;
+    background-color: var(--action-hover);
 }
 
 /* Curso seleccionado */
 #curso {
-    background-color: #edf2f7;
+    background-color: var(--surface-2);
     padding: 6px 10px;
     border-radius: 3px;
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border);
     margin-bottom: 6px;
     font-weight: 600;
-    color: #64001d;
+    color: var(--accent);
     text-align: center;
 }
 
@@ -296,13 +441,13 @@ hr {
 .nota-final {
     font-size: 15px;
     font-weight: bold;
-    color: #64001d;
+    color: var(--accent);
     text-align: center;
     margin: 6px 0 2px 0;
     padding: 5px;
-    background-color: #edf2f7;
+    background-color: var(--surface-2);
     border-radius: 3px;
-    border-left: 4px solid #64001d;
+    border-left: 4px solid var(--accent);
     /*Para la animacion */
     opacity: 0;
     transform: translateY(10px);
@@ -316,13 +461,13 @@ hr {
 
 .nota-faltante {
     font-size: 13px;
-    color: #232c3b;
+    color: var(--text);
     text-align: center;
     margin: 2px 0 6px 0;
     padding: 4px;
-    background-color: #fed7d7;
+    background-color: var(--danger-bg);
     border-radius: 3px;
-    border-left: 4px solid #e53e3e;
+    border-left: 4px solid var(--danger);
     /*Para la animacion */
     opacity: 0;
     transform: translateY(10px);
@@ -342,8 +487,8 @@ footer {
     align-items: center;
     padding: 8px 0;
     gap: 8px;
-    color: #fff;
-    background-color: #64001d;
+    color: var(--accent-contrast);
+    background-color: var(--accent);
 }
 
 footer p {
@@ -354,7 +499,7 @@ footer p {
 footer a {
     display: flex;
     align-items: center;
-    color: #fff;
+    color: var(--accent-contrast);
     text-decoration: none;
     font-size: 16px;
     transition: transform 0.2s ease;
@@ -377,11 +522,11 @@ input[type=number] {
 
 /* Estados de validación visual */
 .input-group input:valid {
-    border-color: #38a169;
+    border-color: var(--success);
 }
 
 .input-group input:invalid:not(:placeholder-shown) {
-    border-color: #e53e3e;
+    border-color: var(--danger);
 }
 
 /* Estilos para resumen de cursos */
@@ -394,8 +539,8 @@ input[type=number] {
 }
 
 .curso-card {
-    background-color: #f7fafc;
-    border: 1px solid #cbd5e0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 12px;
     margin-bottom: 12px;
@@ -404,18 +549,18 @@ input[type=number] {
 
 .curso-card:hover {
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(100, 0, 29, 0.15);
-    border-color: #64001d;
-    background-color: #fff;
+    box-shadow: 0 3px 8px var(--shadow-accent);
+    border-color: var(--accent);
+    background-color: var(--surface-3);
 }
 
 .curso-titulo {
-    color: #64001d;
+    color: var(--accent);
     font-size: 14px;
     font-weight: bold;
     margin: 0 0 8px 0;
     text-align: center;
-    border-bottom: 1px solid #cbd5e0;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 4px;
 }
 
@@ -433,7 +578,7 @@ input[type=number] {
 
 .nota-label {
     font-size: 12px;
-    color: #232c3b;
+    color: var(--text);
     font-weight: 500;
 }
 
@@ -442,21 +587,21 @@ input[type=number] {
     font-weight: bold;
     padding: 2px 6px;
     border-radius: 3px;
-    background-color: #edf2f7;
+    background-color: var(--surface-2);
 }
 
 .nota-aprobada {
-    color: #38a169;
-    background-color: #c6f6d5;
+    color: var(--success);
+    background-color: var(--success-bg);
 }
 
 .nota-desaprobada {
-    color: #e53e3e;
-    background-color: #fed7d7;
+    color: var(--danger);
+    background-color: var(--danger-bg);
 }
 
 .notas-parciales {
-    border-top: 1px solid #cbd5e0;
+    border-top: 1px solid var(--border);
     padding: 6px 0;
     margin-top: 6px;
     display: flex;
@@ -466,7 +611,7 @@ input[type=number] {
 
 .notas-parciales small {
     display: block;
-    color: #4f5b6d;
+    color: var(--text-muted);
     font-size: 10px;
     line-height: 1.3;
 }
@@ -481,7 +626,7 @@ input[type=number] {
 
 .filtro-container label {
     font-weight: 600;
-    color: #4f5b6d;
+    color: var(--text-muted);
     font-size: 13px;
 }
 
@@ -489,12 +634,12 @@ input[type=number] {
 .pdf-header {
     text-align: center;
     padding: 12px 0;
-    border-bottom: 2px solid #64001d;
+    border-bottom: 2px solid var(--accent);
     margin-bottom: 16px;
 }
 
 .pdf-header h2 {
-    color: #64001d;
+    color: var(--accent);
     margin: 0 0 10px 0;
     font-size: 20px;
 }
@@ -506,16 +651,16 @@ input[type=number] {
 .info-estudiante p {
     margin: 6px 0;
     font-size: 13px;
-    color: #232c3b;
+    color: var(--text);
 }
 
 .info-estudiante strong {
-    color: #64001d;
+    color: var(--accent);
     font-weight: 600;
 }
 
 .fecha-generacion {
-    color: #4f5b6d;
+    color: var(--text-muted);
     margin: 8px 0 0 0;
     font-size: 12px;
     text-align: end;
@@ -548,19 +693,19 @@ input[type=number] {
 }
 
 .no-cursos-message {
-    background-color: #f7fafc;
-    border: 1px solid #cbd5e0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 16px;
     margin-bottom: 16px;
-    color: #4a5568;
+    color: var(--text-subtle);
     font-size: 13px;
 }
 
 .no-cursos-message i {
     display: block;
     font-size: 24px;
-    color: #64001d;
+    color: var(--accent);
     margin-bottom: 8px;
 }
 
